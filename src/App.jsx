@@ -9,7 +9,7 @@ function App() {
   //! States
   const [location, setLocation] = useState({});
   const [areasArr, setAreasArr] = useState([]);
-  let sortedAreasArr;
+  let sortedAreasArr = [];
 
   //! Functions
   //* API call to get data of all areas in Indonesia
@@ -52,6 +52,8 @@ function App() {
       );
     });
 
+    //! setLocation(sortedAreasArr[0])
+
     //* Render
     return (
       <div className="App">
@@ -68,8 +70,13 @@ function App() {
     );
   } else {
     return(
-      <div>
-        <h1 className="text-3xl text-center text-red-700 bg-red-200">Location unavailable</h1>
+      <div className="App">
+        <header>
+          <Navbar />
+        </header>
+        <main>
+          <h1 className="text-3xl text-center text-blue-500 bg-blue-200 m-4 p-2 rounded">Waiting for location ...</h1>
+        </main>
       </div>
     )
   }
