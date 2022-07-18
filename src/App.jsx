@@ -1,18 +1,27 @@
 import { useState } from 'react'
 import './App.css'
 import { Navbar } from './components/Navbar'
-import { Weather } from './components/Weather'
+import { CoordinateCalculation } from './components/CoordinateCalculation'
 
 function App() {
-  const [count, setCount] = useState(0)
+  //* States
+  const [location, setLocation] = useState({});
 
+  //* Functions
+  function getLocation(foundLocation) { //? Callback function to get the closest city
+    setLocation(foundLocation);
+  }
+
+  //* Render
   return (
     <div className='App'>
       <header>
         <Navbar />
       </header>
       <main>
-        <Weather />
+        <CoordinateCalculation 
+          getLocation={getLocation}
+        />
       </main>
     </div>
   )
