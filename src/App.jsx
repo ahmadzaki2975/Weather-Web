@@ -64,7 +64,7 @@ useEffect(() => {
   if (location.id) {
     console.log(location.id)
     weatherAPI
-      .get(`/cuaca/501397.json`)
+      .get(`/cuaca/${location.id}.json`)
       .then((response) => {
         if (weather[0] === undefined) {
           setWeather(response.data);
