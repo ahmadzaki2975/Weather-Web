@@ -1,15 +1,22 @@
 export const Weather = (props) => {
+  const location = props.location;
   const weather = props.weather;
+  console.log(weather);
   const today = [];
   const tomorrow = [];
-  if(weather !== undefined && weather.cuaca !== undefined) {
+  console.log(`weather of ${location.kota}`, weather);
+  if(weather[0] !== undefined) {
     for (let i = 0; i < 8; i++) {
+      if(weather[i].cuaca === '') {
+        weather[i].cuaca = 'Unknown'
+      }
       if(i < 4) {
         today.push(weather[i]);
       } else {
         tomorrow.push(weather[i]);
       }
     }
+    console.log("tomorrow", tomorrow);
     return(
       <ul>
         <h1>TODAY</h1>

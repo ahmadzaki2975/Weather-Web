@@ -28,7 +28,7 @@ function App() {
       weatherAPI
         .get("/cuaca/wilayah.json")
         .then((response) => {
-          console.log(coordinate.latitude, coordinate.longitude);
+          // console.log(coordinate.latitude, coordinate.longitude);
           //* Get an array of areas with distance less than 0.5, store in a temporary array
           const data = response.data;
           const filtered = data.filter((area) => {
@@ -46,7 +46,6 @@ function App() {
                 (area.lat - coordinate.latitude) ** 2
             );
           });
-          console.log("sorted", sorted);
           if (sorted && nearestAreas[0] === undefined) {
             setNearestAreas(sorted);
           }
@@ -63,14 +62,14 @@ function App() {
   //* Getting the weather
 useEffect(() => {
   if (location.id) {
+    console.log(location.id)
     weatherAPI
-      .get(`/cuaca/${location.id}.json`)
+      .get(`/cuaca/501397.json`)
       .then((response) => {
-        console.log(response.data);
         if (weather[0] === undefined) {
           setWeather(response.data);
         }
-        // console.log("weather", weather);
+        console.log("weather", weather);
       })
       .catch((err) => console.error(err));
   }
@@ -87,7 +86,7 @@ useEffect(() => {
           coordinate={coordinate}
           nearestAreas={nearestAreas}
         />
-        <Weather weather={weather}/>
+        <Weather weather={weather} location={location}/>
       </main>
     </div>
   );
