@@ -1,9 +1,9 @@
 import axios from "axios";
 
-const baseURL = "https://ibnux.github.io/BMKG-importer/"
+const baseUrlImporter = "https://ibnux.github.io/BMKG-importer/"
 
 const weatherAPI = axios.create({
-  baseURL: baseURL
+  baseURL: baseUrlImporter
 });
 
 export default weatherAPI;
