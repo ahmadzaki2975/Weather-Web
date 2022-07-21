@@ -5,6 +5,7 @@ import { CoordinateCalculation } from "./components/CoordinateCalculation";
 import { useGeolocated } from "react-geolocated";
 import weatherAPI from "./scripts/api";
 import { Weather } from "./components/Weather";
+import { WeatherCard } from "./components/WeatherCard";
 
 function App() {
   //! States

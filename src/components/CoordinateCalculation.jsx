@@ -8,7 +8,7 @@ export const CoordinateCalculation = (props) => {
   //! Render
   if(coordinate && nearestAreas[0]) {
     return (
-      <div className="flex flex-col items-center justify-center mt-3 bg-slate-300">
+      <div className="flex flex-col items-center justify-center p-3 bg-blue-200 mb-5">
         <h1 className="font-bold text-lg">Coordinates</h1>
         {
           <p className="text-center">
@@ -23,7 +23,7 @@ export const CoordinateCalculation = (props) => {
         <h2 className="mt-3">
           Detected Location : 
         </h2>
-          <span className="text-2xl font-bold text-purple-500">
+          <span className="text-2xl font-bold">
             {nearestAreas[0].kota}
           </span>
         <h2 className="mt-3 text-lg">Inaccurate location? Select these options</h2>
