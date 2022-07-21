@@ -13,23 +13,16 @@ function App() {
   const [nearestAreas, setNearestAreas] = useState([]);
   const [location, setLocation] = useState({});
   const [weather, setWeather] = useState([]);
-
+  let i = 1;
   //! Functions
 
   //* API call to get data of all areas in Indonesia
   useEffect(() => {
-    //* Getting Location
-    if (!coordinate.latitude && !coordinate.longitude) {
-      navigator.geolocation.getCurrentPosition((position) => {
-        setCoords(position.coords);
-      });
-    }
     function fetchAPI(coordinate) {
       //* Calling API for areas data
       weatherAPI
         .get("/cuaca/wilayah.json")
         .then((response) => {
-          // console.log(coordinate.latitude, coordinate.longitude);
           //* Get an array of areas with distance less than 0.5, store in a temporary array
           const data = response.data;
           const filtered = data.filter((area) => {
@@ -53,28 +46,43 @@ function App() {
           if (nearestAreas[0]) {
             setLocation(nearestAreas[0]);
           }
-          console.log("location", location);
         })
         .catch((err) => console.error(err));
     }
-    fetchAPI(coordinate);
-  }, [coordinate, nearestAreas, location]);
+    //* Getting Location
+
+    if (i < 4) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        setCoords(position.coords);
+      });
+      fetchAPI(coordinate);
+      i++;
+    }
+  }, [nearestAreas, location]);
 
   //* Getting the weather
-useEffect(() => {
-  if (location.id) {
-    console.log(location.id)
-    weatherAPI
-      .get(`/cuaca/${location.id}.json`)
-      .then((response) => {
-        if (weather[0] === undefined) {
-          setWeather(response.data);
-        }
-        console.log("weather", weather);
-      })
-      .catch((err) => console.error(err));
-  }
-}, [location])
+  useEffect(() => {
+    if (location.id) {
+      weatherAPI
+        .get(`/cuaca/${location.id}.json`)
+        .then((response) => {
+          if (weather[0] === undefined) {
+            setWeather(response.data);
+          }
+        })
+        .catch((err) => console.error(err));
+    }
+  }, [location, nearestAreas]);
+
+  //* Change Location
+  const ChangeLocation = (id) => {
+    console.log(id);
+    const newLocation = nearestAreas.find((area) => {
+      return area.id == id;
+    });
+    setNearestAreas(location)
+    setCoords({latitude: newLocation.lat, longitude : newLocation.lon})
+  };
 
   //* Render
   return (
@@ -86,8 +94,9 @@ useEffect(() => {
         <CoordinateCalculation
           coordinate={coordinate}
           nearestAreas={nearestAreas}
+          ChangeLocation={ChangeLocation}
         />
-        <Weather weather={weather} location={location}/>
+        <Weather weather={weather} location={location} />
       </main>
     </div>
   );
