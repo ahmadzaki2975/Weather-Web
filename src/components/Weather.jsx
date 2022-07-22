@@ -74,7 +74,7 @@ export const Weather = (props) => {
         <h1 className="text-center text-2xl font-bold bg-blue-500 text-white p-5 pb-12">
           TODAY <br/> {today[0].date}
         </h1>
-        <div className="grid grid-cols-2 gap-2 place-items-center mx-4 sm:grid-cols-4">
+        <div className="grid grid-cols-2 gap-2 place-items-center mx-1 sm:grid-cols-4">
           {today.map((item) => {
             return (
               <WeatherCard
