@@ -7,7 +7,7 @@ export const WeatherCard = (props) => {
       <h1 className="font-bold">
         {props.time}
       </h1>
-      <img className="w-1/2" src={`/Weather Icons/${props.weather}.svg?import`}/> 
+      <img className="w-full" src={`/Weather Icons/${props.weather}.svg?import`}/> 
       <h1 className="font-bold">
         {props.weather}
       </h1>
