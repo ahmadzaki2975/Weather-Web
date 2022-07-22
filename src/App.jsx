@@ -6,6 +6,7 @@ import { useGeolocated } from "react-geolocated";
 import weatherAPI from "./scripts/api";
 import { Weather } from "./components/Weather";
 import { WeatherCard } from "./components/WeatherCard";
+import { Footer } from "./components/Footer";
 
 function App() {
   //! States
@@ -98,6 +99,9 @@ function App() {
         />
         <Weather weather={weather} location={location} />
       </main>
+      <footer>
+        <Footer />
+      </footer>
     </div>
   );
 }

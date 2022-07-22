@@ -1,5 +1,4 @@
 import { WeatherCard } from "./WeatherCard";
-import MostlyCloudy from "/public/Weather Icons/Mostly Cloudy.svg";
 
 export const Weather = (props) => {
   //* States / Variables
