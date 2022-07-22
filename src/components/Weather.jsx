@@ -10,12 +10,11 @@ export const Weather = (props) => {
   // console.log(`weather of ${location.kota}`, weather);
 
   if (weather[0] !== undefined) {
-
     //* Getting weather from kodeCuaca
     fullWeather = weather.map((item) => {
       if (item.kodeCuaca == 0) {
         item.weather = "Bright Sky";
-        item.cuaca = "Cerah"
+        item.cuaca = "Cerah";
       } else if (item.kodeCuaca == 1 || item.kodeCuaca == 2) {
         item.weather = "Partly Cloudy";
       } else if (item.kodeCuaca == 3) {
@@ -41,12 +40,12 @@ export const Weather = (props) => {
       }
 
       //* Separating date and time
-      let date = '';
-      let time = '';
-      for(let i = 0; i < 19;i ++) {
-        if(i < 10) {
+      let date = "";
+      let time = "";
+      for (let i = 0; i < 19; i++) {
+        if (i < 10) {
           date += item.jamCuaca[i];
-        } else if(i > 10) {
+        } else if (i > 10) {
           time += item.jamCuaca[i];
         }
       }
@@ -58,7 +57,7 @@ export const Weather = (props) => {
         jamCuaca: item.jamCuaca,
         cuaca: item.cuaca,
         date: item.date,
-        time: item.time
+        time: item.time,
       };
     });
 
@@ -72,9 +71,9 @@ export const Weather = (props) => {
     return (
       <>
         <h1 className="text-center text-2xl font-bold bg-blue-500 text-white p-5 pb-12">
-          TODAY <br/> {today[0].date}
+          TODAY <br /> {today[0].date}
         </h1>
-        <div className="grid grid-cols-2 gap-2 place-items-center mx-1 sm:grid-cols-4">
+        <div className="grid grid-cols-2 gap-2 place-items-center md:grid-cols-4 mx-10 md:mx-30 sm:mx-32">
           {today.map((item) => {
             return (
               <WeatherCard
@@ -89,17 +88,17 @@ export const Weather = (props) => {
           <br />
         </div>
         <h1 className="text-center text-2xl font-bold bg-blue-500 text-white p-5 pb-12">
-          TOMORROW <br/> {tomorrow[0].date}
+          TOMORROW <br /> {tomorrow[0].date}
         </h1>
-        <div className="grid grid-cols-2 gap-2 place-items-center mx-4 sm:grid-cols-4">
+        <div className="grid grid-cols-2 gap-2 place-items-center md:grid-cols-4 mx-10 md:mx-30 sm:mx-32">
           {tomorrow.map((item) => {
             return (
               <WeatherCard
-              key={item.jamCuaca}
-              date={item.date}
-              time={item.time}
-              weather={item.weather}
-              cuaca={item.cuaca}
+                key={item.jamCuaca}
+                date={item.date}
+                time={item.time}
+                weather={item.weather}
+                cuaca={item.cuaca}
               />
             );
           })}
@@ -109,6 +108,8 @@ export const Weather = (props) => {
     );
   } else
     return (
-      <p className="text-3xl text-center">Sorry, it seems that we don&apos;t receive data for your location.</p>
+      <p className="text-3xl text-center">
+        Sorry, it seems that we don&apos;t receive data for your location.
+      </p>
     );
 };

@@ -91,7 +91,7 @@ function App() {
       <header>
         <Navbar />
       </header>
-      <main>
+      <main className="bg-blue-200">
         <CoordinateCalculation
           coordinate={coordinate}
           nearestAreas={nearestAreas}
